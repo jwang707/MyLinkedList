@@ -57,8 +57,42 @@ public class MyLinkedList{
      return bang.getData();
    }
  }
-/*
- public String set(int index, String value);
- public String toString(); */
- //Any helper method that returns a Node object MUST BE PRIVATE!
+
+ public String set(int index, String value){
+   if (index < 0 || index > size){
+     throw new IndexOutOfBoundsException("Index out of bounds!");
+   }
+   else{
+     Node bang = start;
+     for (int i = 0; i < index; i++){
+       bang = bang.getNext();
+     }
+     bang.setData(value);
+     return bang.getData();
+   }
+ }
+
+ public String toString() {
+   if (size == 0){
+     return "[]";
+   }
+
+   String result = "[";
+   Node newNode = start;
+   int counter = 0;
+
+   while (counter <= size){
+     if (counter == size){
+        result += newNode.getData() + "]";
+        counter++;
+     }
+     else{
+       result += newNode.getData() + ", ";
+       newNode = newNode.getNext();
+       counter++;
+     }
+   }
+
+   return result;
+ }
 }
