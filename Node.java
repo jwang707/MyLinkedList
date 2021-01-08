@@ -30,7 +30,7 @@ public class Node{
    return prev;
  }
 
- public Node setNext(Node val){
+ public Node setPrev(Node val){
    Node old = prev;
    prev = val;
    return old;
