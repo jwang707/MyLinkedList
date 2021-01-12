@@ -95,6 +95,22 @@ public class MyLinkedList{
    return result;
  }
 
+ public String toStringReversed() {
+   if (size == 0){
+     return "[]";
+   }
+
+   String result = "[";
+   Node newNode = end;
+
+   while (newNode.getPrev() != null){
+       result += newNode.getData() + ", ";
+       newNode = newNode.getPrev();
+  }
+  result += newNode.getData() + "]";
+  return result;
+ }
+
  public String remove(int index){
    if (index <= 0 || index > size){
      throw new IndexOutOfBoundsException("Index out of bounds!");
@@ -137,7 +153,7 @@ public void extend(MyLinkedList other){
   if (other.size() != 0){
     end.setNext(other.start);
     other.start.setPrev(end);
-    end = other.end;  
+    end = other.end;
     size += other.size();
     other.start = null;
     other.end = null;
