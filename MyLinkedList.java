@@ -81,8 +81,8 @@ public class MyLinkedList{
    Node newNode = start;
    int counter = 0;
 
-   while (counter <= size){
-     if (counter == size){
+   while (counter < size){
+     if (counter == size-1){
         result += newNode.getData() + "]";
         counter++;
      }
@@ -92,7 +92,36 @@ public class MyLinkedList{
        counter++;
      }
    }
-
    return result;
  }
+
+ public String remove(int index){
+   if (index <= 0 || index > size){
+     throw new IndexOutOfBoundsException("Index out of bounds!");
+   }
+   if (size == 1){
+     Node grab = start;
+     start = end = null;
+     return grab.getData();
+   }
+   else if (index == size){
+     Node grab = end;
+     end = end.getPrev();
+     end.setNext(null);
+     size--;
+     return grab.getData();
+   }
+   else{
+     Node bang = start; // in hindsight i realize a helper method would have been much much easier
+     for (int i = 0; i < index-1; i++){
+       bang = bang.getNext();
+     }
+     Node postbang = bang.getNext();
+     Node after = postbang.getNext();
+     after.setPrev(bang);
+     bang.setPrev(after);
+     return postbang.getData();
+   }
+ }
+
 }
